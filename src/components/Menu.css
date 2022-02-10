@@ -3,21 +3,26 @@ ion-menu ion-content {
 }
 
 ion-menu.md ion-content {
-  --padding-start: 8px;
-  --padding-end: 8px;
-  --padding-top: 20px;
-  --padding-bottom: 20px;
+  --padding-start: 20%;
+  --padding-end: 10%;
+  --padding-top: 20%;
+}
+
+ion-menu.md ion-avatar {
+  margin-bottom: 20%;
+  margin-left: 30%;
 }
 
 ion-menu.md ion-list {
-  padding: 20px 0;
+  padding: 25% 0 0;
 }
 
 ion-menu.md ion-note {
   margin-bottom: 30px;
 }
 
-ion-menu.md ion-list-header, ion-menu.md ion-note {
+ion-menu.md ion-list-header,
+ion-menu.md ion-note {
   padding-left: 10px;
 }
 
@@ -110,4 +115,4 @@ ion-note {
 
 ion-item.selected {
   --color: var(--ion-color-primary);
-} 
+}
