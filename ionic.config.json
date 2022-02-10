@@ -1,0 +1,7 @@
+{
+  "name": "yoobic-coding-exercise",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
