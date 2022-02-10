@@ -1,17 +1,20 @@
-import React from 'react';
-import { IonPage, IonToolbar, IonHeader, IonTitle } from '@ionic/react';
-
+import React from "react";
+import { IonPage, IonToolbar, IonHeader, IonTitle, IonIcon, IonButtons, IonMenuButton } from "@ionic/react";
+import { optionsOutline } from "ionicons/icons";
 const Detail: React.FC = () => {
-    return(
-        <IonPage>
-            <IonHeader>
-                <IonToolbar>
-                    <IonTitle>Detail Page</IonTitle>
-                </IonToolbar>
-            </IonHeader>
-        </IonPage>
-    );
-}
-
+  return (
+    <IonPage>
+      <IonHeader>
+        <IonToolbar mode="ios">
+          <IonIcon slot="end" ios={optionsOutline} />
+          <IonButtons slot="start">
+            <IonMenuButton />
+          </IonButtons>
+          <IonTitle className="ionTextCenter">LOGO</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+    </IonPage>
+  );
+};
 
 export default Detail;

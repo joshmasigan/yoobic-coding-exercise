@@ -74,7 +74,7 @@ const SignIn: React.FC = () => {
           <IonButton shape="round" color="medium" fill="outline">
             Sign Up
           </IonButton>
-          <IonButton onClick={logIn} routerLink="/pages/MasterList" shape="round" color="dark">
+          <IonButton onClick={logIn} routerLink="/page/MasterList" shape="round" color="dark">
             Sign In
           </IonButton>
         </div>

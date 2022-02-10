@@ -30,20 +30,21 @@ import { options, optionsOutline, optionsSharp } from "ionicons/icons";
 import "./Main.css";
 import UserCard from "../../components/UserCard";
 import axios from "axios";
-import React from "react";
+import React, {useEffect, useState} from "react";
 
-interface User {
+interface IUser {
   name: string;
   email: string;
   icon: string;
   country: string;
 }
 
-let users: User[] = [];
+let users: IUser[] = [];
 
 const userAPILink: string = "https://randomuser.me/api/";
+const usersToRender: number = 5;
 
-for (let i = 0; i < 3; ++i) {
+for (let i = 0; i < usersToRender; ++i) {
   axios.get(userAPILink).then((response) =>
     users.push({
       name: `${response.data.results[0].name.first} ${response.data.results[0].name.last}`,
@@ -55,10 +56,50 @@ for (let i = 0; i < 3; ++i) {
 }
 
 const Main: React.FC = () => {
-  const [userList, setUserList] = React.useState<User[]>([]);
+  const [userList, setUserList] = useState<IUser[] | undefined>([]);
+  const [user, setUser] = useState<IUser | undefined>();
+  // const [names, setNames] = useState<Array<string>([]);
+  const [userLoaded, setUserLoaded] = useState<boolean>(false);
 
-  const avatarLink: string =
-    "https://images.unsplash.com/photo-1613254026301-71fd1a7fd020?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHlvZGF8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60";
+  const fetchUser = async () => {
+    try {
+      let response = await fetch(userAPILink);
+      let json = await response.json();
+      return { success: true, data: json };
+    } catch (error) {
+      console.log(error);
+      return { success: false };
+    }
+  };
+
+    useEffect(() => {
+    (async () => {
+      setUserLoaded(false);
+      let res = await fetchUser();
+      if (res.success) {
+        setUser(res.data.results[0]);
+        // use spread operator to add users to userList
+        setUserLoaded(true);
+      }
+    })();
+  }, []);
+
+  console.log(user);
+
+  // useEffect(() => {
+  //   for(let i = 0; i < usersToRender; ++i){
+  //     fetch(userAPILink)
+  //   .then(response => response.json()
+  //     .then(json => {
+  //       const user: IUser{
+  //         name: json.data.results[0].name.first,
+  //       }
+  //     })
+  //   .then(json => setNames(`${json.results[0].name.first} ${json.results[0].name.last}`)));
+  //   .then(json => console.log(`${json.results[0].name.first} ${json.results[0].name.last}`)));
+  //   }
+
+  // }, [])
 
   return (
     <IonPage>
@@ -83,7 +124,7 @@ const Main: React.FC = () => {
           {users.map((user, index) => {
             return (
               <IonItem key={index}>
-                <IonCard routerLink={`/detail/${index}`}>
+                <IonCard routerLink={`detail/${index}`}>
                   <IonCardHeader className="card-header">
                     <IonGrid>
                       <IonRow>
@@ -115,8 +156,6 @@ const Main: React.FC = () => {
             );
           })}
         </IonList>
-
-        <IonTitle>Hello World</IonTitle>
       </IonContent>
     </IonPage>
   );
