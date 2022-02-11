@@ -1,7 +1,6 @@
 import {
   IonApp,
   IonRouterOutlet,
-  IonSplitPane,
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";

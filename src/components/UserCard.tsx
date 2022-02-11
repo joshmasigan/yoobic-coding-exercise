@@ -11,40 +11,70 @@ import {
   IonRow,
   IonCol,
   IonAvatar,
+  IonLabel,
 } from "@ionic/react";
+import { render } from "react-dom";
 
-const UserCard: React.FC = (props: any) => {
-  return (
-    <IonCard routerLink={props.key}>
-      <IonCardHeader className="card-header">
-        <IonGrid>
-          <IonRow>
-            <IonCol size="3">
-              <IonAvatar>
-                <img src={props.icon} />
-              </IonAvatar>
-            </IonCol>
-            <IonCol size="7">
-              <IonCardTitle>{props.name}</IonCardTitle>
-              <IonCardSubtitle>{props.email}</IonCardSubtitle>
-            </IonCol>
-            <IonCol size="2">
-              <IonText>
-                <p>{props.country}</p>
-              </IonText>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-      </IonCardHeader>
-      <IonCardContent>
-        <IonImg className="character-img"></IonImg>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book.
-      </IonCardContent>
-    </IonCard>
-  );
+type UserCardProps = {
+  id: number;
+  name: string;
+  icon: string;
+  email: string;
+  country: string;
 };
 
-export default UserCard;
+class UserCard extends React.Component<UserCardProps> {
+  render() {
+    return (
+      <IonCard routerLink={`detail/${this.props.name}`} id={this.props.name}>
+        <IonCardHeader className="card-header">
+          <IonGrid>
+            <IonRow>
+              <IonCol size="3">
+                <IonAvatar>
+                  <img src={this.props.icon} />
+                </IonAvatar>
+              </IonCol>
+              <IonCol size="9">
+                <IonCardTitle>{this.props.name}</IonCardTitle>
+                <IonCardSubtitle>{this.props.email}</IonCardSubtitle>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        </IonCardHeader>
+        <IonCardContent>
+          <IonText>
+            <IonLabel>{this.props.country}</IonLabel>
+          </IonText>
+          <IonImg className="character-img"></IonImg>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </IonCardContent>
+      </IonCard>
+    );
+  }
+}
+
+export default ({
+  id,
+  name,
+  icon,
+  email,
+  country,
+}: {
+  id: number;
+  name: string;
+  icon: string;
+  email: string;
+  country: string;
+}) => (
+  <UserCard
+    id={id}
+    name={name}
+    icon={icon}
+    email={email}
+    country={country}
+  ></UserCard>
+);

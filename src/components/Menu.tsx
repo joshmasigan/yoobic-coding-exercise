@@ -11,7 +11,6 @@ import {
 
 import { useLocation } from "react-router-dom";
 import {
-  personCircleOutline,
   chatbubblesOutline,
   fileTrayStackedOutline,
   imageOutline,
@@ -21,7 +20,6 @@ import {
   fileTrayStackedSharp,
   imageSharp,
   layersSharp,
-  personCircleSharp,
   returnDownBackSharp,
 } from "ionicons/icons";
 import "./Menu.css";
@@ -65,8 +63,6 @@ const appPages: AppPage[] = [
     mdIcon: returnDownBackSharp,
   },
 ];
-
-// const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
 const Menu: React.FC = () => {
   const location = useLocation();
