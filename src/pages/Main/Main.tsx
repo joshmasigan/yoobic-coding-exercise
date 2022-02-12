@@ -10,14 +10,14 @@ import {
   IonSegment,
   IonSegmentButton,
   IonItem,
-  IonList
+  IonList,
 } from "@ionic/react";
 
 import { optionsOutline } from "ionicons/icons";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
-import UserCard from "../../components/UserCard";
+import { UserCard } from "../../components/UserCard";
 import "./Main.css";
 
 const userAPILink: string = "https://randomuser.me/api/";
@@ -29,6 +29,7 @@ const Main: React.FC = () => {
     email: string;
     icon: string;
     country: string;
+    image: string;
   }
   const [userList, setUserList] = useState<IUser[]>([]);
 
@@ -36,14 +37,15 @@ const Main: React.FC = () => {
     for (let i = 0; i < usersToRender; ++i) {
       (async () => {
         const res = await axios.get(userAPILink);
-        let tempUser: IUser = {
+        let newUser: IUser = {
           name: `${res.data.results[0].name.first} ${res.data.results[0].name.last}`,
           email: `${res.data.results[0].email}`,
           icon: `${res.data.results[0].picture.thumbnail}`,
           country: `${res.data.results[0].location.country}`,
+          image: 'https://picsum.photos/300/400'
         };
         setUserList((userList) => {
-          return [...userList, tempUser];
+          return [...userList, newUser];
         });
       })();
     }
@@ -78,6 +80,7 @@ const Main: React.FC = () => {
                   icon={user.icon}
                   email={user.email}
                   country={user.country}
+                  image={user.image}
                 ></UserCard>
               </IonItem>
             );

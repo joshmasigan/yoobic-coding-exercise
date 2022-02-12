@@ -4,7 +4,7 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { Redirect, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Menu from "./components/Menu";
 import SignIn from "./pages/SignIn/SignIn";
 import Main from "./pages/Main/Main";
@@ -39,8 +39,6 @@ const App: React.FC = () => {
           <IonRouterOutlet id="main">
             <Route exact path="/" component={SignIn} />
             <Route exact path="/page/MasterList" component={Main} />
-            {/* <Route exact path="/page/detail/" component={Detail} /> */}
-            <Route path="/page/detail/:id" component={Detail} />
             <Route exact path="/page/" component={SignIn} />
           </IonRouterOutlet>
       </IonReactRouter>

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import {
   IonCard,
   IonGrid,
@@ -11,9 +11,15 @@ import {
   IonRow,
   IonCol,
   IonAvatar,
-  IonLabel,
+  IonModal,
+  IonHeader,
+  IonToolbar,
+  IonIcon,
+  IonTitle,
 } from "@ionic/react";
-import { render } from "react-dom";
+import { closeOutline, closeSharp } from "ionicons/icons";
+
+import "./UserCard.css";
 
 type UserCardProps = {
   id: number;
@@ -21,60 +27,77 @@ type UserCardProps = {
   icon: string;
   email: string;
   country: string;
+  image: string;
 };
 
-class UserCard extends React.Component<UserCardProps> {
-  render() {
-    return (
-      <IonCard routerLink={`detail/${this.props.name}`} id={this.props.name}>
-        <IonCardHeader className="card-header">
-          <IonGrid>
-            <IonRow>
-              <IonCol size="3">
-                <IonAvatar>
-                  <img src={this.props.icon} />
-                </IonAvatar>
-              </IonCol>
-              <IonCol size="9">
-                <IonCardTitle>{this.props.name}</IonCardTitle>
-                <IonCardSubtitle>{this.props.email}</IonCardSubtitle>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
-        </IonCardHeader>
-        <IonCardContent>
-          <IonText>
-            <IonLabel>{this.props.country}</IonLabel>
-          </IonText>
-          <IonImg className="character-img"></IonImg>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
-        </IonCardContent>
-      </IonCard>
-    );
-  }
-}
+export const UserCard = (props: UserCardProps) => {
+  const [myModal, setMyModal] = useState({ isOpen: false });
+  return (
+    <IonCard onClick={() => setMyModal({ isOpen: true })} id={props.name}>
+      <IonModal isOpen={myModal.isOpen}>
+        <IonHeader>
+          <IonToolbar mode="ios" className="ion-padding">
+            <IonIcon
+              slot="start"
+              ios={closeOutline}
+              md={closeSharp}
+              onClick={() => setMyModal({ isOpen: false })}
+            />
+            <IonTitle className="ionTextCenter">{props.name}</IonTitle>
+          </IonToolbar>
+        </IonHeader>
 
-export default ({
-  id,
-  name,
-  icon,
-  email,
-  country,
-}: {
-  id: number;
-  name: string;
-  icon: string;
-  email: string;
-  country: string;
-}) => (
-  <UserCard
-    id={id}
-    name={name}
-    icon={icon}
-    email={email}
-    country={country}
-  ></UserCard>
-);
+        <IonCard>
+          <IonCardHeader>
+            <IonImg src={props.image} />
+            <IonGrid>
+              <IonRow>
+                <IonCol size="3">
+                  <IonAvatar>
+                    <img src={props.icon} />
+                  </IonAvatar>
+                </IonCol>
+                <IonCol size="9">
+                  <IonCardTitle>{props.name}</IonCardTitle>
+                  <IonCardSubtitle>{props.email}</IonCardSubtitle>
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          </IonCardHeader>
+          <IonCardContent>
+            <IonText>
+              <p>Taken in: {props.country}</p>
+            </IonText>
+          </IonCardContent>
+        </IonCard>
+      </IonModal>
+
+      <IonCardHeader className="card-header">
+        <IonGrid>
+          <IonRow>
+            <IonCol size="3">
+              <IonAvatar>
+                <img src={props.icon} />
+              </IonAvatar>
+            </IonCol>
+            <IonCol size="9">
+              <IonCardTitle>{props.name}</IonCardTitle>
+              <IonCardSubtitle>{props.email}</IonCardSubtitle>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+      </IonCardHeader>
+      <IonCardContent>
+        <img src={props.image} className="center-img" />
+        <IonText className="ion-text-center ion-margin">
+          <h2 className="subheading">{props.country}</h2>
+        </IonText>
+        <IonImg className="character-img"></IonImg>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book.
+      </IonCardContent>
+    </IonCard>
+  );
+};
