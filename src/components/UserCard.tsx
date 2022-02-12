@@ -31,17 +31,18 @@ type UserCardProps = {
 };
 
 export const UserCard = (props: UserCardProps) => {
-  const [myModal, setMyModal] = useState({ isOpen: false });
+  const [detailModal, setDetailModal] = useState({ isOpen: false });
+  // would ideally have separate modal component but was unable to pass detailModal's state from custom Modal component to parent UserCard component
   return (
-    <IonCard onClick={() => setMyModal({ isOpen: true })} id={props.name}>
-      <IonModal isOpen={myModal.isOpen}>
+    <IonCard onClick={() => setDetailModal({ isOpen: true })} id={props.name}>
+      <IonModal isOpen={detailModal.isOpen}>
         <IonHeader>
           <IonToolbar mode="ios" className="ion-padding">
             <IonIcon
               slot="start"
               ios={closeOutline}
               md={closeSharp}
-              onClick={() => setMyModal({ isOpen: false })}
+              onClick={() => setDetailModal({ isOpen: false })}
             />
             <IonTitle className="ionTextCenter">{props.name}</IonTitle>
           </IonToolbar>
