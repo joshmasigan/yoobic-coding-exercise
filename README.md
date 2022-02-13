@@ -9,6 +9,8 @@ Menu component does not appear when on sign in page
 \*note username and password fields console logged for now
 
 (Push Menu)
+Working links: Sign Out and Master List
+Links not implemented: Chat and Dashboard
 Menu component visible and routes properly when on screen
 
 (Content Page)

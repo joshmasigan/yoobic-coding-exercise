@@ -15,24 +15,32 @@ import {
 
 import { optionsOutline } from "ionicons/icons";
 import axios from "axios";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 
-import { UserCard } from "../../components/UserCard";
+import { UserCard } from "../../components/UserCardComponent/UserCard";
 import "./Main.css";
 
 const userAPILink: string = "https://randomuser.me/api/";
-const usersToRender: number = 5;
+
+const usersToRender: number = 5; // how many users to load
 
 const Main: React.FC = () => {
+  // define User object
   interface IUser {
     name: string;
     email: string;
     icon: string;
     country: string;
     image: string;
+    description: string;
   }
-  const [userList, setUserList] = useState<IUser[]>([]);
+  const [userList, setUserList] = useState<IUser[]>([]);  // create state for user objects array
 
+
+  // On refresh, use axios to make API calls to randomuserAPI
+  // Take JSON object and pull: name, email, icon, and country in to User object
+  // Store newUser in to userList
+  // Loop using usersToRender var as counter
   useEffect(() => {
     for (let i = 0; i < usersToRender; ++i) {
       (async () => {
@@ -42,8 +50,11 @@ const Main: React.FC = () => {
           email: `${res.data.results[0].email}`,
           icon: `${res.data.results[0].picture.thumbnail}`,
           country: `${res.data.results[0].location.country}`,
-          image: 'https://picsum.photos/300/400'
+          image: "https://picsum.photos/300/400",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum ut tristique et egestas. Sapien et ligula ullamcorper malesuada proin libero. Urna duis convallis convallis tellus.",
         };
+
         setUserList((userList) => {
           return [...userList, newUser];
         });
@@ -53,6 +64,7 @@ const Main: React.FC = () => {
 
   return (
     <IonPage>
+      {/* Header */}
       <IonHeader>
         <IonToolbar mode="ios">
           <IonIcon slot="end" ios={optionsOutline} />
@@ -62,7 +74,6 @@ const Main: React.FC = () => {
           <IonTitle className="ionTextCenter">LOGO</IonTitle>
         </IonToolbar>
       </IonHeader>
-
       <IonContent fullscreen className="ionPadding">
         <IonHeader collapse="condense"></IonHeader>
         <IonSegment>
@@ -70,6 +81,9 @@ const Main: React.FC = () => {
           <IonSegmentButton>Tab 2</IonSegmentButton>
           <IonSegmentButton>Tab 3</IonSegmentButton>
         </IonSegment>
+        {/* Header ends */}
+        
+        {/* Map userList to generate UserCard components */}
         <IonList>
           {userList.map((user, index) => {
             return (
@@ -81,7 +95,8 @@ const Main: React.FC = () => {
                   email={user.email}
                   country={user.country}
                   image={user.image}
-                ></UserCard>
+                  description={user.description}
+                />
               </IonItem>
             );
           })}

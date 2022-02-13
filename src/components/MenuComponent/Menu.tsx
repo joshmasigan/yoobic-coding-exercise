@@ -11,12 +11,10 @@ import {
 
 import { useLocation } from "react-router-dom";
 import {
-  chatbubblesOutline,
   fileTrayStackedOutline,
   imageOutline,
   layersOutline,
   returnDownBackOutline,
-  chatbubblesSharp,
   fileTrayStackedSharp,
   imageSharp,
   layersSharp,
@@ -49,12 +47,6 @@ const appPages: AppPage[] = [
     url: "/page/Photos",
     iosIcon: imageOutline,
     mdIcon: imageSharp,
-  },
-  {
-    title: "Chat",
-    url: "/page/Chat",
-    iosIcon: chatbubblesOutline,
-    mdIcon: chatbubblesSharp,
   },
   {
     title: "Sign Out",

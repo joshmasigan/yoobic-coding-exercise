@@ -1,0 +1,9 @@
+h1 {
+    font-size: 2rem;
+    color: #fff;
+}
+
+.center {
+  display: block;
+  margin: 0 auto;
+}

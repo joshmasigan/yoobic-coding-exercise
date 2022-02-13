@@ -28,13 +28,26 @@ type UserCardProps = {
   email: string;
   country: string;
   image: string;
+  description: string;
 };
 
 export const UserCard = (props: UserCardProps) => {
   const [detailModal, setDetailModal] = useState({ isOpen: false });
-  // would ideally have separate modal component but was unable to pass detailModal's state from custom Modal component to parent UserCard component
+  // would ideally have separate modal component but was unable to pass
+  // detailModal's state from custom Modal component to parent UserCard component
+
+  const handleClose = () => {
+    console.log(`Value before click: ${detailModal.isOpen}`);
+    setDetailModal({ isOpen: false });
+    console.log(`Value after click: ${detailModal.isOpen}`);
+  };
+
   return (
-    <IonCard onClick={() => setDetailModal({ isOpen: true })} id={props.name}>
+    <IonCard
+      onClick={() => setDetailModal({ isOpen: true })}
+      id={`${props.name}Modal`}
+    >
+      {/* When card clicked, open modal */}
       <IonModal isOpen={detailModal.isOpen}>
         <IonHeader>
           <IonToolbar mode="ios" className="ion-padding">
@@ -42,13 +55,14 @@ export const UserCard = (props: UserCardProps) => {
               slot="start"
               ios={closeOutline}
               md={closeSharp}
-              onClick={() => setDetailModal({ isOpen: false })}
+              onClick={handleClose} // Modal currently does not close when clicked -> see console
             />
             <IonTitle className="ionTextCenter">{props.name}</IonTitle>
           </IonToolbar>
         </IonHeader>
 
-        <IonCard>
+        {/* Detailed Modal component */}
+        <IonCard id="detailModal">
           <IonCardHeader>
             <IonImg src={props.image} />
             <IonGrid>
@@ -67,12 +81,14 @@ export const UserCard = (props: UserCardProps) => {
           </IonCardHeader>
           <IonCardContent>
             <IonText>
-              <p>Taken in: {props.country}</p>
+              <p>This photo was taken in: {props.country}</p>
             </IonText>
           </IonCardContent>
         </IonCard>
       </IonModal>
+      {/* Detailed Modal component end */}
 
+      {/* Card component */}
       <IonCardHeader className="card-header">
         <IonGrid>
           <IonRow>
@@ -94,11 +110,9 @@ export const UserCard = (props: UserCardProps) => {
           <h2 className="subheading">{props.country}</h2>
         </IonText>
         <IonImg className="character-img"></IonImg>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book.
+        {props.description}
       </IonCardContent>
+      {/* Card component end */}
     </IonCard>
   );
 };
