@@ -2,6 +2,16 @@ This app is a pseudo social media style app that allows users to authenticate, b
 
 Frameworks used: Ionic, React.js
 
+**Test-Drive Instructions**
+
+1. Use Command Line to navigate to project directory.
+2. $ionic serve
+3. Use browser inspect/devtools to view page in mobile view.
+   _Optional_ type in dummy credentials on sign in form
+4. Click sign in button to proceed to main project (if credentials used, to see log in credentials logged)
+5. Scroll through content list and click on any of the cards to view a more detailed view. -> Use 'X' icon to return to content page.
+6. Click Menu button in top left corner to open push Menu and navigate to different pages.
+
 **_PAGES_**
 
 Sign In(SignIn.tsx)
