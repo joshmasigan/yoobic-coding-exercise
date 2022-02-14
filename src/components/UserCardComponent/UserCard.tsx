@@ -45,39 +45,6 @@ export const UserCard = (props: UserCardProps) => {
 
   return (
     <div id="cardComponent">
-      {/* Card component */}
-      {/* When card clicked, open modal */}
-      <IonCard onClick={handleModal} id={`${props.name}Modal`}>
-        <IonCardHeader className="card-header">
-          <IonGrid>
-            <IonRow>
-              <IonCol size="3">
-                <IonAvatar>
-                  <img src={props.icon} />
-                </IonAvatar>
-              </IonCol>
-              <IonCol size="9">
-                <IonCardTitle>{props.name}</IonCardTitle>
-                <IonCardSubtitle>{props.email}</IonCardSubtitle>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
-        </IonCardHeader>
-        <IonCardContent>
-          <img
-            src={props.image}
-            className="main-img"
-            alt={`a photo posted by ${props.name}`}
-          />
-          <IonText className="ion-text-center ion-margin">
-            <h2 className="subheading">{props.country}</h2>
-          </IonText>
-          <IonImg className="character-img"></IonImg>
-          {props.description}
-        </IonCardContent>
-      </IonCard>
-      {/* Card component end */}
-
       {/* Detailed Modal component */}
       {/* Detailed Modal Header */}
       <IonModal isOpen={detailModal} trigger="close">
@@ -121,6 +88,39 @@ export const UserCard = (props: UserCardProps) => {
         </IonCard>
       </IonModal>
       {/* Detailed Modal Body end */}
+
+      {/* Card component */}
+      {/* When card clicked, open modal */}
+      <IonCard onClick={handleModal} id={`${props.name}Modal`}>
+        <IonCardHeader className="card-header">
+          <IonGrid>
+            <IonRow>
+              <IonCol size="3">
+                <IonAvatar>
+                  <img src={props.icon} />
+                </IonAvatar>
+              </IonCol>
+              <IonCol size="9">
+                <IonCardTitle>{props.name}</IonCardTitle>
+                <IonCardSubtitle>{props.email}</IonCardSubtitle>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        </IonCardHeader>
+        <IonCardContent>
+          <img
+            src={props.image}
+            className="main-img"
+            alt={`a photo posted by ${props.name}`}
+          />
+          <IonText className="ion-text-center ion-margin">
+            <h2 className="subheading">{props.country}</h2>
+          </IonText>
+          <IonImg className="character-img"></IonImg>
+          {props.description}
+        </IonCardContent>
+      </IonCard>
+      {/* Card component end */}
     </div>
   );
 };
