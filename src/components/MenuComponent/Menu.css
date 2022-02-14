@@ -116,3 +116,10 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+/* .sign-out-div {
+  position: absolute;
+  display: block;
+  margin-top: 5rem;
+  margin-left: 5rem;
+} */

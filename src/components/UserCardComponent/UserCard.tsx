@@ -32,39 +32,73 @@ type UserCardProps = {
 };
 
 export const UserCard = (props: UserCardProps) => {
-  const [detailModal, setDetailModal] = useState({ isOpen: false });
+  const [detailModal, setDetailModal] = useState<boolean>(false);
+
+  // console.log(detailModal);
+
   // would ideally have separate modal component but was unable to pass
   // detailModal's state from custom Modal component to parent UserCard component
 
-  const handleClose = () => {
-    console.log(`Value before click: ${detailModal.isOpen}`);
-    setDetailModal({ isOpen: false });
-    console.log(`Value after click: ${detailModal.isOpen}`);
+  const handleModal = () => {
+    setDetailModal(!detailModal);
   };
 
   return (
-    <IonCard
-      onClick={() => setDetailModal({ isOpen: true })}
-      id={`${props.name}Modal`}
-    >
+    <div id="cardComponent">
+      {/* Card component */}
       {/* When card clicked, open modal */}
-      <IonModal isOpen={detailModal.isOpen}>
+      <IonCard onClick={handleModal} id={`${props.name}Modal`}>
+        <IonCardHeader className="card-header">
+          <IonGrid>
+            <IonRow>
+              <IonCol size="3">
+                <IonAvatar>
+                  <img src={props.icon} />
+                </IonAvatar>
+              </IonCol>
+              <IonCol size="9">
+                <IonCardTitle>{props.name}</IonCardTitle>
+                <IonCardSubtitle>{props.email}</IonCardSubtitle>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        </IonCardHeader>
+        <IonCardContent>
+          <img
+            src={props.image}
+            className="main-img"
+            alt={`a photo posted by ${props.name}`}
+          />
+          <IonText className="ion-text-center ion-margin">
+            <h2 className="subheading">{props.country}</h2>
+          </IonText>
+          <IonImg className="character-img"></IonImg>
+          {props.description}
+        </IonCardContent>
+      </IonCard>
+      {/* Card component end */}
+
+      {/* Detailed Modal component */}
+      {/* Detailed Modal Header */}
+      <IonModal isOpen={detailModal} trigger="close">
         <IonHeader>
           <IonToolbar mode="ios" className="ion-padding">
             <IonIcon
+              id="close"
               slot="start"
               ios={closeOutline}
               md={closeSharp}
-              onClick={handleClose} // Modal currently does not close when clicked -> see console
+              onClick={handleModal}
             />
             <IonTitle className="ionTextCenter">{props.name}</IonTitle>
           </IonToolbar>
         </IonHeader>
+        {/* Detailed Modal Header end */}
 
-        {/* Detailed Modal component */}
+        {/* Detailed Modal Body */}
         <IonCard id="detailModal">
           <IonCardHeader>
-            <IonImg src={props.image} />
+            <IonImg className="main-img" src={props.image} />
             <IonGrid>
               <IonRow>
                 <IonCol size="3">
@@ -86,33 +120,7 @@ export const UserCard = (props: UserCardProps) => {
           </IonCardContent>
         </IonCard>
       </IonModal>
-      {/* Detailed Modal component end */}
-
-      {/* Card component */}
-      <IonCardHeader className="card-header">
-        <IonGrid>
-          <IonRow>
-            <IonCol size="3">
-              <IonAvatar>
-                <img src={props.icon} />
-              </IonAvatar>
-            </IonCol>
-            <IonCol size="9">
-              <IonCardTitle>{props.name}</IonCardTitle>
-              <IonCardSubtitle>{props.email}</IonCardSubtitle>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-      </IonCardHeader>
-      <IonCardContent>
-        <img src={props.image} className="center-img" />
-        <IonText className="ion-text-center ion-margin">
-          <h2 className="subheading">{props.country}</h2>
-        </IonText>
-        <IonImg className="character-img"></IonImg>
-        {props.description}
-      </IonCardContent>
-      {/* Card component end */}
-    </IonCard>
+      {/* Detailed Modal Body end */}
+    </div>
   );
 };

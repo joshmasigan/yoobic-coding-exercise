@@ -1,5 +1,6 @@
 import {
   IonAvatar,
+  IonButton,
   IonContent,
   IonIcon,
   IonItem,
@@ -19,6 +20,9 @@ import {
   imageSharp,
   layersSharp,
   returnDownBackSharp,
+  powerOutline,
+  chatbubblesOutline,
+  chatbubblesSharp,
 } from "ionicons/icons";
 import "./Menu.css";
 
@@ -47,6 +51,12 @@ const appPages: AppPage[] = [
     url: "/page/Photos",
     iosIcon: imageOutline,
     mdIcon: imageSharp,
+  },
+    {
+    title: "Chat",
+    url: "/page/Chat",
+    iosIcon: chatbubblesOutline,
+    mdIcon: chatbubblesSharp,
   },
   {
     title: "Sign Out",

@@ -5,13 +5,23 @@ import {
   IonIcon,
   IonModal,
   IonTitle,
-  IonContent,
-  IonItem
+  IonCard,
+  IonCardHeader,
+  IonCardContent,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonImg,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonAvatar,
+  IonText,
 } from "@ionic/react";
 import { closeOutline, closeSharp } from "ionicons/icons";
-import { userInfo } from "os";
 
-// Unable to 
+// Should be used in place of IonModal in UserCard.tsx
+// I could not find clear direction on how to pass detailModal's state 
+// to parent object to control the Modal therefore, this is commented out
 
 // type UserDetailProps = {
 //   id: string;
@@ -19,35 +29,54 @@ import { userInfo } from "os";
 //   icon: string;
 //   email: string;
 //   country: string;
+//   image: string;
 // };
 
 // export const UserDetailModal = (props: UserDetailProps) => {
-//   const [myModal, setMyModal] = useState({ isOpen: false });
+//   const [detailModal, setDetailModal] = useState(false);
 
 //   const handleCloseModal = () => {
-//     setMyModal({ isOpen: false });
-//     console.log(myModal);
+//     setDetailModal(false);
+//     console.log(detailModal);
 //   };
 //   return (
-//     <IonModal isOpen={myModal.isOpen}>
+//     <IonModal isOpen={detailModal}>
 //       <IonHeader>
 //         <IonToolbar mode="ios" className="ion-padding">
 //           <IonIcon
 //             slot="start"
 //             ios={closeOutline}
 //             md={closeSharp}
-//             onClick={handleCloseModal}
+//             onClick={() => setDetailModal(false)} // Modal currently does not close when clicked -> see console
 //           />
-//           <IonTitle className="ionTextCenter">
-//             {props.name}
-//           </IonTitle>
+//           <IonTitle className="ionTextCenter">{props.name}</IonTitle>
 //         </IonToolbar>
 //       </IonHeader>
-//       <IonContent className="ionTextCenter">
-//         <IonItem>
 
-//         </IonItem>
-//       </IonContent>
+//       {/* Detailed Modal component */}
+//       <IonCard id="detailModal">
+//         <IonCardHeader>
+//           <IonImg src={props.image} />
+//           <IonGrid>
+//             <IonRow>
+//               <IonCol size="3">
+//                 <IonAvatar>
+//                   <img src={props.icon} />
+//                 </IonAvatar>
+//               </IonCol>
+//               <IonCol size="9">
+//                 <IonCardTitle>{props.name}</IonCardTitle>
+//                 <IonCardSubtitle>{props.email}</IonCardSubtitle>
+//               </IonCol>
+//             </IonRow>
+//           </IonGrid>
+//         </IonCardHeader>
+//         <IonCardContent>
+//           <IonText>
+//             <p>This photo was taken in: {props.country}</p>
+//           </IonText>
+//         </IonCardContent>
+//       </IonCard>
 //     </IonModal>
 //   );
 // };

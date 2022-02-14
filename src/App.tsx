@@ -41,7 +41,7 @@ const App: React.FC = () => {
             <Route exact path="/page/MasterList" component={Main} />
             <Route exact path="/page/Dashboard" component={NotYetImplemented} />
             <Route exact path="/page/Photos" component={NotYetImplemented} />
-            <Route exact path="/page/" component={SignIn} />
+            <Route exact path="/page/Chat" component={NotYetImplemented} />
           </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

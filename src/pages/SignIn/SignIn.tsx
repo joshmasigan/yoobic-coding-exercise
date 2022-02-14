@@ -21,6 +21,8 @@ import { personCircle } from "ionicons/icons";
 
 import React, { useState } from "react";
 
+import Footer from "../../components/FooterComponent/Footer";
+
 import "./SignIn.css";
 
 const SignIn: React.FC = () => {
@@ -36,6 +38,8 @@ const SignIn: React.FC = () => {
   const logIn = () => {
     console.log(username);
     console.log(password);
+    setUsername('');
+    setPassword('');
     // add security and verification logic here
   };
 
@@ -86,7 +90,7 @@ const SignIn: React.FC = () => {
               </IonRow>
             </IonGrid>
             <div className="ion-text-center ion-margin">
-              <IonButton shape="round" color="medium" fill="outline">
+              <IonButton className="ion-padding" shape="round" color="medium" fill="outline">
                 Sign Up
               </IonButton>
               <IonButton
@@ -94,12 +98,14 @@ const SignIn: React.FC = () => {
                 routerLink="/page/MasterList"
                 shape="round"
                 color="dark"
+                className="ion-padding"
               >
                 Sign In
               </IonButton>
             </div>
           </IonCardContent>
         </IonCard>
+        <Footer />
       </IonContent>
     </IonPage>
   );

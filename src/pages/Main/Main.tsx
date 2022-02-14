@@ -22,8 +22,6 @@ import "./Main.css";
 
 const userAPILink: string = "https://randomuser.me/api/";
 
-const usersToRender: number = 5; // how many users to load
-
 const Main: React.FC = () => {
   // define User object
   interface IUser {
@@ -34,13 +32,13 @@ const Main: React.FC = () => {
     image: string;
     description: string;
   }
-  const [userList, setUserList] = useState<IUser[]>([]);  // create state for user objects array
+  const usersToRender: number = 5; // how many users to load
 
+  const [userList, setUserList] = useState<IUser[]>([]); // create state for user objects array
 
-  // On refresh, use axios to make API calls to randomuserAPI
+  // On render, use axios to make API calls to randomuserAPI
   // Take JSON object and pull: name, email, icon, and country in to User object
-  // Store newUser in to userList
-  // Loop using usersToRender var as counter
+  // Loop using usersToRender var as counter to determine users to render
   useEffect(() => {
     for (let i = 0; i < usersToRender; ++i) {
       (async () => {
@@ -54,7 +52,8 @@ const Main: React.FC = () => {
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum ut tristique et egestas. Sapien et ligula ullamcorper malesuada proin libero. Urna duis convallis convallis tellus.",
         };
-
+        
+        // add newUser object to userList state array by using spread operator
         setUserList((userList) => {
           return [...userList, newUser];
         });
@@ -71,7 +70,7 @@ const Main: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle className="ionTextCenter">LOGO</IonTitle>
+          <IonTitle className="ionTextCenter">Master List</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className="ionPadding">
@@ -82,7 +81,7 @@ const Main: React.FC = () => {
           <IonSegmentButton>Tab 3</IonSegmentButton>
         </IonSegment>
         {/* Header ends */}
-        
+
         {/* Map userList to generate UserCard components */}
         <IonList>
           {userList.map((user, index) => {

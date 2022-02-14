@@ -13,9 +13,11 @@ import {
 
 import { optionsOutline } from "ionicons/icons";
 
-import React from "react";
+type title = {
+  title: string;
+}
 
-const NotYetImplemented: React.FC = () => {
+export const NotYetImplemented = (props: title) => {
     return (
    <IonPage>
       <IonHeader>
@@ -24,12 +26,12 @@ const NotYetImplemented: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle className="ionTextCenter">LOGO</IonTitle>
+          <IonTitle className="ion-text-center">LOGO</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
         <IonItem>
-            <IonText>
+            <IonText className="ion-text-center">
                 <h1>Sorry this page has not yet been implemented.</h1>
             </IonText>
         </IonItem>
