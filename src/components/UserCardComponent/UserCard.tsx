@@ -22,7 +22,7 @@ import { closeOutline, closeSharp } from "ionicons/icons";
 import "./UserCard.css";
 
 type UserCardProps = {
-  id: number;
+  id: string;
   name: string;
   icon: string;
   email: string;
@@ -91,7 +91,7 @@ export const UserCard = (props: UserCardProps) => {
 
       {/* Card component */}
       {/* When card clicked, open modal */}
-      <IonCard onClick={handleModal} id={`${props.name}Modal`}>
+      <IonCard onClick={handleModal} id={`${props.id}`}>
         <IonCardHeader className="card-header">
           <IonGrid>
             <IonRow>

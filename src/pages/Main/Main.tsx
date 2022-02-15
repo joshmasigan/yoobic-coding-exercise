@@ -88,7 +88,7 @@ const Main: React.FC = () => {
             return (
               <IonItem key={index}>
                 <UserCard
-                  id={index}
+                  id={`${index}`}
                   name={user.name}
                   icon={user.icon}
                   email={user.email}
